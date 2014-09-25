@@ -38,8 +38,7 @@ def extractInfo(input_file):
 						families.append(family)
 						family = dict()
 						family['ID'] = part2
-			
-			if part1 == '1':
+			elif part1 == '1':
 				if (part2 == "BIRT" or part2 == "DEAT" or 
 					part2 == "DIV" or part2 == "MARR"):
 					prev_tag = part2
@@ -47,17 +46,19 @@ def extractInfo(input_file):
 					person[part2] = part3
 				elif not indi_tag and part2 in VALID_TAGS:
 					family[part2] = part3
-			
-
-			if part1 == '2' and part2 == "DATE":
+			elif part1 == '2' and part2 == "DATE":
 				if indi_tag:
 					person[prev_tag] = part3
 					prev_tag = ''
 				else:
 					family[prev_tag] = part3
 					prev_tag = ''
+			else:
+				print "Unkown Line."
+		
 		else:
 			print "Match Failed."
+
 
 def checkDeathBeforeBirth(indviduals):
     for indi in individuals:
