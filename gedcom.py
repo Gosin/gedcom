@@ -5,110 +5,9 @@ SSW555 Stevens IT Team Two
 '''
 import sys
 import time
-import re
 
 individuals= []
 families = []
-
-class Individual(object):
-
-    def __init__(self):
-        self.ID = ''
-        self.name = ''
-        self.sex = ''
-        self.birt = ''
-        self.deat = ''
-        self.fam_id = ''
-
-
-    def add_ID(self, ID):
-        if re.match('@\w+@', ID):
-            self.ID = ID
-        else:
-            print "Invalid ID."
-    
-    def add_name(self, name):
-        self.name = name
-
-    def add_sex(self, sex):
-        if sex == 'M' or sex == 'F':
-            self.sex = sex
-        else:
-            print "Invalid sex value."
-
-    def add_birt(self, birt):
-        self.birt = birt
-
-    def add_deat(self, deat):
-        self.deat = deat
-
-    def add_fam_id(self, fam_id):
-        if re.match('@\w+@', fam_id):
-            self.fam_id = fam_id
-        else:
-            print "Invalid Family ID."
-
-    def get_ID(self):
-        if self.ID:
-            return self.ID
-        else:
-            print "ID doesn't exits."
-
-    def get_name(self):
-        return self.name
-
-    def get_birt(self):
-        return self.birt
-
-    def get_deat(self):
-        if self.deat:
-            return self.deat
-        else:
-            print "No death date available."
-
-    def get_fam_id(self):
-        return self.fam_id
-
-
-class Family(object):
-
-    def __init__(self):
-        self.fam_id = ''
-        self.husb = ''
-        self.wife = ''
-        self.marr = ''
-        self.chil = []
-
-    def add_fam_id(self, fam_id):
-        if re.match('@\w+@', fam_id):
-            self.fam_id = fam_id
-        else:
-            print "Invalid Family ID."
-
-    def add_husb(self, husb):
-        self.husb = husb
-
-    def add_wife(self, wife):
-        self.wife = wife
-
-    def add_marr(self, marr):
-        self.marr = marr
-
-    def add_chil(self, chil):
-        self.chil.append(chil)
-
-    def get_husb(self):
-        return self.husb
-
-    def get_wife(self):
-        return self.wife
-
-    def get_marr(self):
-        return self.marr
-
-    def get_child(self):
-        return self.chil
-
 
 def gatherInfo(input_file):
     ID_TAGS = ['INDI', 'FAM']
@@ -243,6 +142,15 @@ def getHusbandId(family):
 
 def getWifeId(family):
     return family['WIFE']
+
+def getBirthDate(individual):
+    return individual['BIRT']
+    
+def getDeathDate(individual):
+    return individual['DEAT']
+
+def validateDeathDate(individual):
+    return time.strptime(getBirthDate(individual), "%d %b %Y") <= time.strptime(getDeathDate(individual), "%d %b %Y")
      
 def main(arg1):
     input_file = open(arg1, 'r')
