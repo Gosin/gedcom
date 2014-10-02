@@ -28,7 +28,7 @@ def extractInfo(input_file):
 			if part1 == '0':
 				if part3 == "INDI":
 					indi_tag = True
-					if person and:
+					if person:
 						individuals.append(person)
 						person = dict()
 						person['ID'] = part2 
