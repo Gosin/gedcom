@@ -1,55 +1,82 @@
 import unittest
-from gedcom import getTag
-from gedcom import getLevel
-from gedcom import getBirthDate
-from gedcom import getDeathDate
-from gedcom import validateDeathDate
+from Individual import Individual
+from Family import Family
+
 
 
 class GedcomTest(unittest.TestCase):
 
     def setUp(self):
-        self.line_indi = "0 @I1@ INDI"
-        self.line_name = "2 NAME Papa Bear"
-        self.person = dict()
-        self.person["BIRT"] = "8 JAN 1936"
-        self.person["DEAT"] = "9 JAN 1970"
-        
-    def test_getLevel(self):
-        LEVEL = "0"
-        self.assertEqual(getLevel(self.line_indi), LEVEL)
-        self.assertNotEqual(getLevel(self.line_name), LEVEL)
-        
-        LEVEL = "2"
-        self.assertEqual(getLevel(self.line_name), LEVEL)
-        self.assertNotEqual(getLevel(self.line_indi), LEVEL)
-        
-    def test_getTag(self):
-        TAG = "INDI"
-        self.assertEqual(getTag(self.line_indi), TAG)
-        self.assertNotEqual(getLevel(self.line_name), TAG)
-        
-        TAG = "NAME"
-        self.assertEqual(getTag(self.line_name), TAG)
-        self.assertNotEqual(getLevel(self.line_indi), TAG)
-        
-    def test_getBirthDate(self):
-        DATE = self.person["BIRT"]
-        self.assertEqual(getBirthDate(self.person), DATE)
-        DATE = self.person["DEAT"]
-        self.assertNotEqual(getBirthDate(self.person), DATE)
-        
-    def test_getDeathDate(self):
-        DATE = self.person["DEAT"]
-        self.assertEqual(getDeathDate(self.person), DATE)
-        self.person["DEAT"] = "1 JAN 1600"
-        self.assertNotEqual(getDeathDate(self.person), DATE)
-        
-    def test_validateDeathDate(self):
-        self.assertTrue(validateDeathDate(self.person))
-        self.person["DEAT"] = "1 JAN 1600"
-        self.assertFalse(validateDeathDate(self.person))
-        
+        self.indi = Individual()
+        self.indi.addID('@I2@')
+        self.indi.addName('John Rivas')
+        self.indi.addSex('M')
+        self.indi.addBirt('9 MAY 1978')
+        self.indi.addDeat('12 APR 2013')
+        self.indi.addFams('@F2@')
+        self.indi.addFamc('@F1@')
+        self.fam = Family()
+        self.fam.addFamID('@F2@')
+        self.fam.addHusb('@I1@')
+        self.fam.addWife('@I2@')
+        self.fam.addChil('@I4@')
+        self.fam.addChil('@I5@')
+        self.fam.addMarr('5 OCT 1999')
+        self.fam.addDiv('12 JUN 2012')
+
+    def test_getID(self):
+        ID = '@I2@'
+        self.assertEqual(self.indi.getID(), ID)
+
+    def test_getName(self):
+        NAME = 'John Rivas'
+        self.assertEqual(self.indi.getName(), NAME)
+
+    def test_getSex(self):
+        SEX = 'M'
+        self.assertEqual(self.indi.getSex(), SEX)
+
+    def test_getBirt(self):
+        BIRT = '9 MAY 1978'
+        self.assertEqual(self.indi.getBirt(), BIRT)
+
+    def test_getDeat(self):
+        DEAT = '12 APR 2013'
+        self.assertEqual(self.indi.getDeat(), DEAT)
+
+    def test_getFams(self):
+        FAMS = '@F2@'
+        self.assertEqual(self.indi.getFams(), FAMS)
+
+    def test_getFamc(self):
+        FAMC = '@F1@'
+        self.assertEqual(self.indi.getFamc(), FAMC)
+
+    def test_getFamID(self):
+        FAMID = '@F2@'
+        self.assertEqual(self.fam.getFamID(), FAMID)
+
+    def test_getHusb(self):
+        HUSB = "@I1@"
+        self.assertEqual(self.fam.getHusb(), HUSB)
+
+    def test_getWife(self):
+        WIFE = "@I2@"
+        self.assertEqual(self.fam.getWife(), WIFE)
+
+    def test_getChil(self):
+        CHIL = ['@I4@', '@I5@']
+        self.assertEqual(self.fam.getChil(), CHIL)
+
+    def test_getMarr(self):
+        MARR = '5 OCT 1999'
+        self.assertEqual(self.fam.getMarr(), MARR)
+
+    def test_getDiv(self):
+        DIV = '12 JUN 2012'
+        self.assertEqual(self.fam.getDiv(), DIV)
+
+
 
 
 if __name__ == '__main__':

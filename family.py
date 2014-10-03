@@ -5,34 +5,47 @@ class Family(object):
         self.husb = ''
         self.wife = ''
         self.marr = ''
+        self.div = ''
         self.chil = []
 
-    def add_fam_id(self, fam_id):
-        if re.match('@\w+@', fam_id):
-            self.fam_id = fam_id
-        else:
-            print "Invalid Family ID."
+    def addFamID(self, fam_id):
+        self.fam_id = fam_id
 
-    def add_husb(self, husb):
+    def addHusb(self, husb):
         self.husb = husb
 
-    def add_wife(self, wife):
+    def addWife(self, wife):
         self.wife = wife
 
-    def add_marr(self, marr):
+    def addMarr(self, marr):
         self.marr = marr
 
-    def add_chil(self, chil):
+    def addDiv(self, div):
+        self.div = div
+
+    def addChil(self, chil):
         self.chil.append(chil)
 
-    def get_husb(self):
+    def getFamID(self):
+        return self.fam_id
+
+    def getHusb(self):
         return self.husb
 
-    def get_wife(self):
+    def getWife(self):
         return self.wife
 
-    def get_marr(self):
+    def getChil(self):
+        return self.chil
+
+    def getMarr(self):
         return self.marr
 
-    def get_child(self):
+    def getDiv(self):
+        if self.div:
+            return self.div
+        else:
+            print "Divorce Date not available."
+
+    def getChild(self):
         return self.chil

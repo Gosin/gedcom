@@ -5,158 +5,109 @@ SSW555 Stevens IT Team Two
 '''
 import sys
 import time
+import re
+from Individual import Individual
+from Family import Family
 
-individuals= []
-families = []
+individuals = dict()
+families = dict()
+
+VALID_TAGS = ["INDI", "NAME", "SEX", "BIRT", "DEAT",\
+              "FAMC", "FAMS", "FAM", "MARR", "HUSB",\
+              "WIFE", "CHIL", "DIV", "DATE", "TRLR",\
+              "NOTE"]
+extract_re = '([0-9]*) (@?\w+@?)\s*([^\n\r]*)'
 
 def gatherInfo(input_file):
-    ID_TAGS = ['INDI', 'FAM']
-    person = dict()
-    family = dict()
-    
+
+    # tag category: 0 for indi, 1 for fam, 2 for others
+    tagCat = 2
+
+    prevTag = ''
+    tempID = ''
+    tempFamID = ''
+
     for line in input_file:
-        if validateTag(getLevel(line), getTag(line)):
-            if getTag(line) in ID_TAGS:
-                if person:
-                    individuals.append(person)
-                    person = dict()
-                if family:
-                    families.append(family)
-                    family = dict()
-                
-            if getTag(line) == "INDI":
-                indi_tag = True
-            elif getTag(line) == "FAM":
-                indi_tag = False
-                
-            if indi_tag:
-                if getTag(line) == "BIRT" or getTag(line) == "DEAT":
-                    prev_tag = getTag(line) 
-                elif getTag(line) == "DATE":    
-                    person[prev_tag] = getArguments(line)
+        if re.match(extract_re, line):
+            parts = re.match(extract_re, line).groups()
+            part1 = parts[0]
+            part2 = parts[1]
+            part3 = parts[2]
+
+            if part1 == '0':
+                if part3 == "INDI":
+                    tagCat = 0
+                    indi_tag = True
+                    tempID = part2
+                    individuals[tempID] = Individual()
+                    individuals[tempID].addID(part2)
+                elif part3 == 'FAM':
+                    tagCat = 1
+                    indi_tag = False
+                    tempFamID = part2
+                    families[tempFamID] = Family()
+                    families[tempFamID].addFamID(part2)
                 else:
-                    person[getTag(line)] = getArguments(line)
-            else:
-                if getTag(line) == "DIV" or getTag(line) == "MARR":
-                    prev_tag = getTag(line) 
-                elif getTag(line) == "DATE":    
-                    person[prev_tag] = getArguments(line)
+                    tagCat = 2
+
+            elif part1 == '1':
+                if tagCat == 0:
+                    if part2 == "BIRT" or part2 == "DEAT":
+                        prevTag = part2
+                    elif part2 == 'NAME':
+                        individuals[tempID].addName(part3)
+                    elif part2 == 'SEX':
+                        individuals[tempID].addSex(part3)
+                    elif part2 == 'FAMC':
+                        individuals[tempID].addFamc(part3)
+                    elif part2 == 'FAMS':
+                        individuals[tempID].addFams(part3)
+                    else:
+                        pass
+
+                elif tagCat == 1:
+                    if part2 == "MARR" or part2 == "DIV":
+                        prevTag = part2
+                    elif part2 == 'HUSB':
+                        families[tempFamID].addHusb(part3)
+                    elif part2 == 'WIFE':
+                        families[tempFamID].addWife(part3)
+                    elif part2 == "CHIL":
+                        families[tempFamID].addChil(part3)
+                    else:
+                        pass
+
+                elif tagCat == 2:
+                    pass
+
+            elif part1 == '2' and part2 == 'DATE':
+                if tagCat == 0:
+                    if prevTag == 'BIRT':
+                        individuals[tempID].addBirt(part3)
+                    elif prevTag == 'DEAT':
+                        individuals[tempID].addDeat(part3)
+                    else:
+                        pass
+
+                elif tagCat == 1:
+                    if prevTag == 'MARR':
+                        families[tempFamID].addMarr(part3)
+                    elif prevTag == 'DIV':
+                        families[tempFamID].addDiv(part3)
+                    else:
+                        pass
+
                 else:
-                    family[getTag(line)] = getArguments(line)
-                
-    printIndividualsNames(individuals)
-    printFamiliesParents(families, individuals)
-
-   
-def printIndividualsNames(individuals):
-    individuals.sort(key=lambda k:k['INDI'])
-    for indi in individuals:
-        print getIndiName(indi)
-        
-def printFamiliesParents(families, individuals):
-    families.sort(key=lambda k:k['FAM'])
-    for fam in families:
-        print getIndiName(getIndividual(individuals,getHusbandId(fam))), getIndiName(getIndividual(individuals,getWifeId(fam)))
-        
-    
-def printLines(input_file):
-    for line in input_file:
-        if validateTag(getLevel(line), getTag(line)):
-            print line,
-        
-def getLevel(line):
-    LEVEL_POS = 0
-    return line.split()[LEVEL_POS]
-
-    
-def getTag(line):
-    TAG_POS = 1
-    if int(getLevel(line)):
-        return line.split()[TAG_POS]
-    else:
-        return getZeroTag(line)
-
-def getArguments(line):
-    ARG_POS = 2
-    ID_POS = 1
-    if getLevel(line) == '0':
-        return line.split()[ID_POS]
-    
-    if len(line.split()) > ARG_POS:
-        args = line.split()[ARG_POS:]
-        return ' '.join(args)
-
-     
-def getUniqueId(line):
-    ID_POS = 1
-    if int(getLevel(line)) == 0:
-        return line.split()[ID_POS]
-
-def getZeroTag(line): 
-    ID_TAGS = ['INDI', 'FAM']
-    ID_POS = 2
-    TAG_POS = 1
-    parts = line.split()
-    
-    if int(getLevel(line)):
-        return None
-    
-    if len(parts) > ID_POS:
-        if parts[ID_POS] in ID_TAGS:
-            return parts[ID_POS]
-    else:
-        return parts[TAG_POS]
-   
-def validateTag(level, tag): 
-    VALID_TAGS = [['0', 'INDI'], 
-                  ['1', 'NAME'],
-                  ['1', 'SEX'],
-                  ['1', 'BIRT'],
-                  ['1', 'DEAT'],
-                  ['1', 'FAMC'],
-                  ['1', 'FAMS'],
-                  ['0', 'FAM'],
-                  ['1', 'MARR'],
-                  ['1', 'HUSB'],
-                  ['1', 'WIFE'],
-                  ['1', 'CHIL'],
-                  ['1', 'DIV'],
-                  ['2', 'DATE'],
-                  ['0', 'TRLR'],
-                  ['0', 'NOTE']] 
-    tag_with_level = [level, tag] 
-    return tag_with_level in VALID_TAGS
-
-def getIndividual(individuals, uniqueId):
-    for indi in individuals:
-        if indi['INDI'] == uniqueId:
-            return indi
-
-def getIndiName(individual):
-    return individual['NAME']
+                    pass
 
 
-    
-def getHusbandId(family):
-    return family['HUSB']
-
-def getWifeId(family):
-    return family['WIFE']
-
-def getBirthDate(individual):
-    return individual['BIRT']
-    
-def getDeathDate(individual):
-    return individual['DEAT']
-
-def validateDeathDate(individual):
-    return time.strptime(getBirthDate(individual), "%d %b %Y") <= time.strptime(getDeathDate(individual), "%d %b %Y")
-     
 def main(arg1):
     input_file = open(arg1, 'r')
     gatherInfo(input_file)
+    for indi in individuals:
+        a = individuals[indi].getName()
+        print a
     input_file.close()
-    
-    
+
 if __name__ == '__main__':
     main(sys.argv[1])
