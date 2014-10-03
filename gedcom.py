@@ -37,13 +37,11 @@ def gatherInfo(input_file):
             if part1 == '0':
                 if part3 == "INDI":
                     tagCat = 0
-                    indi_tag = True
                     tempID = part2
                     individuals[tempID] = Individual()
                     individuals[tempID].addID(part2)
                 elif part3 == 'FAM':
                     tagCat = 1
-                    indi_tag = False
                     tempFamID = part2
                     families[tempFamID] = Family()
                     families[tempFamID].addFamID(part2)
