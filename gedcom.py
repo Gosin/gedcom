@@ -8,6 +8,7 @@ import time
 import re
 from Individual import Individual
 from Family import Family
+from AnomalyCheck import checkSameHusbWife
 
 individuals = dict()
 families = dict()
@@ -105,6 +106,8 @@ def main(arg1):
     for indi in individuals:
         a = individuals[indi].getName()
         print a
+    for fam in families:
+        checkSameHusbWife(families[fam])
     input_file.close()
 
 if __name__ == '__main__':
