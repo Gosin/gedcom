@@ -6,8 +6,8 @@ SSW555 Stevens IT Team Two
 import sys
 import time
 import re
-from Individual import Individual
-from Family import Family
+from individual import Individual
+from family import Family
 from AnomalyCheck import checkSameHusbWife
 
 individuals = dict()
@@ -54,7 +54,8 @@ def gatherInfo(input_file):
                     if part2 == "BIRT" or part2 == "DEAT":
                         prevTag = part2
                     elif part2 == 'NAME':
-                        individuals[tempID].addName(part3)
+                        re_name = re.sub(r'/+', "", part3)
+                        individuals[tempID].addName(re_name)
                     elif part2 == 'SEX':
                         individuals[tempID].addSex(part3)
                     elif part2 == 'FAMC':
