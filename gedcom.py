@@ -38,12 +38,12 @@ def gatherInfo(input_file):
             if part1 == '0':
                 if part3 == "INDI":
                     tagCat = 0
-                    tempID = part2
+                    tempID = int(re.sub(r'@+|I+', "", part2))
                     individuals[tempID] = Individual()
                     individuals[tempID].addID(part2)
                 elif part3 == 'FAM':
                     tagCat = 1
-                    tempFamID = part2
+                    tempFamID = int(re.sub(r'@+|F+', "", part2))
                     families[tempFamID] = Family()
                     families[tempFamID].addFamID(part2)
                 else:
@@ -106,7 +106,8 @@ def main(arg1):
     gatherInfo(input_file)
     for indi in individuals:
         a = individuals[indi].getName()
-        print a
+        b = individuals[indi].getID()
+        print b + ": " + a
     for fam in families:
         checkSameHusbWife(families[fam])
     input_file.close()
