@@ -12,3 +12,14 @@ def outputFamSummary(families):
 
 	total_fams = len(families)
 	print "There are %s families in this House." % total_fams
+	print "Here is the list: "
+	for fam in families:
+		fam_husb = families[fam].getHusb()
+		fam_wife = families[fam].getWife()
+		fam_chil = families[fam].getChil()
+		print "Husband is " + fam_husb + ", Wife is " + fam_wife
+		if fam_chil:
+			print "Children: ",
+			for child in fam_chil:
+				print child + " ",
+			print "\n"
