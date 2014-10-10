@@ -26,4 +26,4 @@ def outputFamSummary(families):
 			for child in fam_chil:
 				print child + " ",
 		else:
-			print "There're no children in this family."
+			print "There're no children in this family.",
