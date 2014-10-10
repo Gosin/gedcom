@@ -106,9 +106,8 @@ def main(arg1):
     input_file = open(arg1, 'r')
     gatherInfo(input_file)
     outputIndiSummary(individuals)
-    for fam in families:
-        checkSameHusbWife(families[fam])
-    input_file.close()
+    print "******************************"
+    outputFamSummary(families)
 
 if __name__ == '__main__':
     main(sys.argv[1])
