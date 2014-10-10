@@ -9,6 +9,7 @@ import re
 from individual import Individual
 from family import Family
 from AnomalyCheck import checkSameHusbWife
+from output import *
 
 individuals = dict()
 families = dict()
@@ -104,10 +105,7 @@ def gatherInfo(input_file):
 def main(arg1):
     input_file = open(arg1, 'r')
     gatherInfo(input_file)
-    for indi in individuals:
-        a = individuals[indi].getName()
-        b = individuals[indi].getID()
-        print b + ": " + a
+    outputIndiSummary(individuals)
     for fam in families:
         checkSameHusbWife(families[fam])
     input_file.close()
