@@ -1,20 +1,89 @@
-Gordon /Locke/
-Claude /Dekeyser/
-Esther /Moroze/
-Elizabeth /Refn/
-André /Dekeyser/
-Michelle /Dekeyser/
-Zachary /Auerbach/
-Daniel /Auerbach/
-Cameron /Roberts/
-Montana /Auerbach/
-Richard /Roberts/
-Marilyn /Rosenthall/
-Allison /Roberts/
-Tucker /Hohenstein/
-Kate /Hohenstein/
-Daniel /Auerbach/ Cameron /Roberts/
-Claude /Dekeyser/ Esther /Moroze/
-Richard /Roberts/ Marilyn /Rosenthall/
-Gordon /Locke/ Marilyn /Rosenthall/
-Claude /Dekeyser/ Elizabeth /Refn/
+﻿There are 23 individuals in this House.
+Here is the list: 
+@I1@: Papa Bear
+@I2@: Mama Bear
+@I3@: Yoggi Berra
+@I4@: BooBoo
+@I5@: Baby Bear
+@I6@: Curly Bear
+@I7@: Snuggle Bear
+@I8@: Love-a-Lot Bear
+@I9@: Tenderheart Bear
+@I10@: Lassie DeathBeforeMarriage
+@I11@: Scooby DivorceBeforeMarriage
+@I12@: Toto Wife Is Male
+@I13@: Lady Husband Is Female
+@I14@: Cinnamon MarriedToDeadPerson
+@I15@: Black Beauty Bear
+@I16@: Flame Bear
+@I17@: Sadie TwoSpouses
+@I18@: Cheer Bear
+@I19@: Marley MarriedTooYound
+@I20@: Tramp OneDivorceTooMany
+@I21@: Spot OneDivorceTooMany
+@I22@: Benji OneDivorceTooMany
+@I23@: Bolt DivorcedADeadPerson
+
+There are 14 families in this House.
+Here is the list:  
+
+Family ID: @F1@
+Husband: @I1@, Wife: @I2@
+Children:  @I5@  @I6@  
+
+Family ID: @F2@
+Husband: @I3@, Wife: @I2@
+Children:  @I4@  
+
+Family ID: @F3@
+Husband: @I3@, Wife: @I14@
+There're no children in this family. 
+
+Family ID: @F4@
+Husband: @I4@, Wife: @I17@
+There're no children in this family. 
+
+Family ID: @F5@
+Husband: @I12@, Wife: @I4@
+There're no children in this family. 
+
+Family ID: @F6@
+Husband: @I5@, Wife: @I7@
+Children:  @I8@  @I9@  @I18@  
+
+Family ID: @F7@
+Husband: @I6@, Wife: @I13@
+Children:  @I15@  @I16@  
+
+Family ID: @F8@
+Husband: @I11@, Wife: @I8@
+There're no children in this family. 
+
+Family ID: @F9@
+Husband: @I9@, Wife: @I10@
+There're no children in this family. 
+
+Family ID: @F10@
+Husband: @I19@, Wife: @I18@
+There're no children in this family. 
+
+Family ID: @F11@
+Husband: @I20@, Wife: @I18@
+There're no children in this family. 
+
+Family ID: @F12@
+Husband: @I21@, Wife: @I18@
+There're no children in this family. 
+
+Family ID: @F13@
+Husband: @I22@, Wife: @I18@
+There're no children in this family. 
+
+Family ID: @F14@
+Husband: @I23@, Wife: @I18@
+There're no children in this family.
+
+Issues
+There are 0 issues found.
+
+

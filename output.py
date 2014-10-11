@@ -1,3 +1,6 @@
+from AnomalyCheck import Anomalies
+from family import Family
+
 def outputIndiSummary(individuals):
 
 	total_indis = len(individuals)
@@ -27,3 +30,14 @@ def outputFamSummary(families):
 				print child + " ",
 		else:
 			print "There're no children in this family.",
+			
+def outputAnomalies(anomalies):
+	print "There are %s issues found." % len(anomalies),
+	for a in anomalies:
+		print Anomalies().getMessage(a[0]), 
+		if isinstance(a[1], Family):
+			print a[1].getFamID()
+
+
+	
+	

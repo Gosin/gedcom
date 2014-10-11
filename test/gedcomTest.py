@@ -1,6 +1,6 @@
 import unittest
-from Individual import Individual
-from Family import Family
+from individual import Individual
+from family import Family
 from AnomalyCheck import checkSameHusbWife
 
 
@@ -83,6 +83,8 @@ class GedcomTest(unittest.TestCase):
 
     def test_checkSameHusbWife(self):
         self.assertTrue(checkSameHusbWife(self.fam2))
+        self.assertFalse(checkSameHusbWife(self.fam1))
+
 
 
 

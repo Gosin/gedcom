@@ -4,12 +4,13 @@ SSW555 Stevens IT Team Two
 
 '''
 import sys
-import time
 import re
 from individual import Individual
 from family import Family
-from AnomalyCheck import checkSameHusbWife
-from output import *
+from AnomalyCheck import checkAnomalies
+from output import outputAnomalies
+from output import outputFamSummary
+from output import outputIndiSummary
 
 individuals = dict()
 families = dict()
@@ -101,13 +102,20 @@ def gatherInfo(input_file):
                 else:
                     pass
 
+    
 
 def main(arg1):
     input_file = open(arg1, 'r')
     gatherInfo(input_file)
     outputIndiSummary(individuals)
-    print "******************************"
+    print 
     outputFamSummary(families)
+    print
+    print
+    print "Issues"
+    outputAnomalies(checkAnomalies(families))
+
+    
 
 if __name__ == '__main__':
     main(sys.argv[1])
