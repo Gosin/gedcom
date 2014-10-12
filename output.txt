@@ -1,5 +1,5 @@
-﻿There are 23 individuals in this House.
-Here is the list: 
+There are 23 individuals in this House.
+Here is the list:
 @I1@: Papa Bear
 @I2@: Mama Bear
 @I3@: Yoggi Berra
@@ -25,65 +25,63 @@ Here is the list:
 @I23@: Bolt DivorcedADeadPerson
 
 There are 14 families in this House.
-Here is the list:  
+Here is the list:
 
 Family ID: @F1@
-Husband: @I1@, Wife: @I2@
-Children:  @I5@  @I6@  
+Husband: @I1@, Wife: @I1@
+Children:  @I5@  @I6@
 
 Family ID: @F2@
 Husband: @I3@, Wife: @I2@
-Children:  @I4@  
+Children:  @I4@
 
 Family ID: @F3@
 Husband: @I3@, Wife: @I14@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F4@
 Husband: @I4@, Wife: @I17@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F5@
 Husband: @I12@, Wife: @I4@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F6@
 Husband: @I5@, Wife: @I7@
-Children:  @I8@  @I9@  @I18@  
+Children:  @I8@  @I9@  @I18@
 
 Family ID: @F7@
 Husband: @I6@, Wife: @I13@
-Children:  @I15@  @I16@  
+Children:  @I15@  @I16@
 
 Family ID: @F8@
 Husband: @I11@, Wife: @I8@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F9@
 Husband: @I9@, Wife: @I10@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F10@
 Husband: @I19@, Wife: @I18@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F11@
 Husband: @I20@, Wife: @I18@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F12@
 Husband: @I21@, Wife: @I18@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F13@
 Husband: @I22@, Wife: @I18@
-There're no children in this family. 
+There're no children in this family.
 
 Family ID: @F14@
 Husband: @I23@, Wife: @I18@
 There're no children in this family.
 
 Issues
-There are 0 issues found.
-
-
+There are 1 issues found. Error: Husband and Wife are same person in family. @F1@
