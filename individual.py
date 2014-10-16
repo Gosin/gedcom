@@ -6,8 +6,8 @@ class Individual(object):
         self.sex = ''
         self.birt = ''
         self.deat = ''
-        self.fams = ''
-        self.famc = ''
+        self.fams = []
+        self.famc = []
 
 
     def addID(self, ID):
@@ -29,10 +29,10 @@ class Individual(object):
         self.deat = deat
 
     def addFams(self, fams):
-        self.fams = fams
+        self.fams.append(fams)
 
     def addFamc(self, famc):
-        self.famc = famc
+        self.famc.append(famc)
 
     def getID(self):
         return self.ID
