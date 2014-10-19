@@ -1,11 +1,11 @@
 class Family(object):
 
     def __init__(self):
-        self.fam_id = ''
-        self.husb = ''
-        self.wife = ''
-        self.marr = ''
-        self.div = ''
+        self.fam_id = None
+        self.husb = None
+        self.wife = None
+        self.marr = None
+        self.div = None
         self.chil = []
 
     def addFamID(self, fam_id):
@@ -42,10 +42,4 @@ class Family(object):
         return self.marr
 
     def getDiv(self):
-        if self.div:
-            return self.div
-        else:
-            print "Divorce Date not available."
-
-    def getChild(self):
-        return self.chil
+        return self.div

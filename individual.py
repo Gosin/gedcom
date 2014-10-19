@@ -1,27 +1,25 @@
 class Individual(object):
 
     def __init__(self):
-        self.ID = ''
-        self.name = ''
-        self.sex = ''
-        self.birt = ''
-        self.deat = ''
+        self.ID = None
+        self.name = None
+        self.sex = None
+        self.birt = None
+        self.deat = None
         self.fams = []
         self.famc = []
-
+  
 
     def addID(self, ID):
         self.ID = ID
-
+        
     def addName(self, name):
         self.name = name
 
     def addSex(self, sex):
         if sex == 'M' or sex == 'F':
             self.sex = sex
-        else:
-            print "Invalid sex value."
-
+    
     def addBirt(self, birt):
         self.birt = birt
 
@@ -47,10 +45,8 @@ class Individual(object):
         return self.birt
 
     def getDeat(self):
-        if self.deat:
-            return self.deat
-        else:
-            print "No death date available."
+        return self.deat
+
 
     def getFams(self):
         return self.fams
