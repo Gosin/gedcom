@@ -1,4 +1,4 @@
-There are 24 individuals in this House.
+There are 26 individuals in this House.
 Here is the list:
 @I1@: Papa Bear
 @I2@: Mama Bear
@@ -24,8 +24,10 @@ Here is the list:
 @I22@: Benji OneDivorceTooMany
 @I23@: Bolt DivorcedADeadPerson
 @I24@: SameHusband SameHusbWife
+@I25@: MarryDaughter ParentsMarryChildren
+@I26@: MarryFather ParentsMarryChildren
 
-There are 15 families in this House.
+There are 16 families in this House.
 Here is the list:
 
 Family ID: @F1@
@@ -102,6 +104,11 @@ Family ID: @F15@
 Husband: @I24@ : SameHusband SameHusbWife
 Wife: @I24@ : SameHusband SameHusbWife
 There are no children in this family.
+
+Family ID: @F16@
+Husband: @I25@ : MarryDaughter ParentsMarryChildren
+Wife: @I26@ : MarryFather ParentsMarryChildren
+Children:  @I26@ MarryFather ParentsMarryChildren
 
 Issues
 There are 1 issues found. Error: Husband and Wife are same person in family. @F15@

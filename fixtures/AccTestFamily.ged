@@ -243,6 +243,23 @@
 1 BIRT
 2 DATE 1 JAN 1980
 1 FAMS @F15@
+0 @I25@ INDI
+1 NAME MarryDaughter /ParentsMarryChildren/
+2 GIVN MarryChild
+2 SURN ParentsMarryChildren
+2 _MARNM ParentsMarryChildren
+1 SEX M
+1 BIRT
+2 DATE 28 FEB 1969
+1 FAMS @F16@
+0 @I26@ INDI
+1 NAME MarryFather /ParentsMarryChildren/
+2 GIVN MarryFather
+2 SURN ParentsMarryChildren
+1 SEX F
+1 BIRT
+2 DATE 26 APR 1990
+1 FAMC @F16@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
@@ -355,4 +372,10 @@
 1 WIFE @I24@
 1 MARR
 2 DATE 2 APR 2008
+0 @F16@ FAM
+1 HUSB @I25@
+1 WIFE @I26@
+1 CHIL @I26@
+1 MARR
+2 DATE 6 JUN 2008
 0 TRLR
