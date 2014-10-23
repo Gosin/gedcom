@@ -1,121 +1,4 @@
-There are 27 individuals in this House.
-Here is the list:
-@I1@: Papa Bear
-@I2@: Mama Bear
-@I3@: Yoggi Berra
-@I4@: BooBoo
-@I5@: Baby Bear
-@I6@: Curly Bear
-@I7@: Snuggle Bear
-@I8@: Love-a-Lot Bear
-@I9@: Tenderheart Bear
-@I10@: Lassie DeathBeforeMarriage
-@I11@: Scooby DivorceBeforeMarriage
-@I12@: Toto Wife Is Male
-@I13@: Lady Husband Is Female
-@I14@: Cinnamon MarriedToDeadPerson
-@I15@: Black Beauty Bear
-@I16@: Flame Bear
-@I17@: Sadie TwoSpouses
-@I18@: Cheer Bear
-@I19@: Marley MarriedTooYound
-@I20@: Tramp OneDivorceTooMany
-@I21@: Spot OneDivorceTooMany
-@I22@: Benji OneDivorceTooMany
-@I23@: Bolt DivorcedADeadPerson
-@I24@: SameHusband SameHusbWife
-@I25@: MarryDaughter ParentsMarryChildren
-@I26@: MarryFather ParentsMarryChildren
-@27@: Poorman DeadBeforeBirth
-
-There are 16 families in this House.
-Here is the list:
-
-Family ID: @F1@
-Husband: @I1@ : Papa Bear
-Wife: @I2@ : Mama Bear
-Children:  @I5@ Baby Bear @I6@ Curly Bear
-
-Family ID: @F2@
-Husband: @I3@ : Yoggi Berra
-Wife: @I2@ : Mama Bear
-Children:  @I4@ BooBoo
-
-Family ID: @F3@
-Husband: @I3@ : Yoggi Berra
-Wife: @I14@ : Cinnamon MarriedToDeadPerson
-There are no children in this family.
-
-Family ID: @F4@
-Husband: @I4@ : BooBoo
-Wife: @I17@ : Sadie TwoSpouses
-There are no children in this family.
-
-Family ID: @F5@
-Husband: @I12@ : Toto Wife Is Male
-Wife: @I4@ : BooBoo
-There are no children in this family.
-
-Family ID: @F6@
-Husband: @I5@ : Baby Bear
-Wife: @I7@ : Snuggle Bear
-Children:  @I8@ Love-a-Lot Bear @I9@ Tenderheart Bear @I18@ Cheer Bear
-
-Family ID: @F7@
-Husband: @I6@ : Curly Bear
-Wife: @I13@ : Lady Husband Is Female
-Children:  @I15@ Black Beauty Bear @I16@ Flame Bear
-
-Family ID: @F8@
-Husband: @I11@ : Scooby DivorceBeforeMarriage
-Wife: @I8@ : Love-a-Lot Bear
-There are no children in this family.
-
-Family ID: @F9@
-Husband: @I9@ : Tenderheart Bear
-Wife: @I10@ : Lassie DeathBeforeMarriage
-There are no children in this family.
-
-Family ID: @F10@
-Husband: @I19@ : Marley MarriedTooYound
-Wife: @I18@ : Cheer Bear
-There are no children in this family.
-
-Family ID: @F11@
-Husband: @I20@ : Tramp OneDivorceTooMany
-Wife: @I18@ : Cheer Bear
-There are no children in this family.
-
-Family ID: @F12@
-Husband: @I21@ : Spot OneDivorceTooMany
-Wife: @I18@ : Cheer Bear
-There are no children in this family.
-
-Family ID: @F13@
-Husband: @I22@ : Benji OneDivorceTooMany
-Wife: @I18@ : Cheer Bear
-There are no children in this family.
-
-Family ID: @F14@
-Husband: @I23@ : Bolt DivorcedADeadPerson
-Wife: @I18@ : Cheer Bear
-There are no children in this family.
-
-Family ID: @F15@
-Husband: @I24@ : SameHusband SameHusbWife
-Wife: @I24@ : SameHusband SameHusbWife
-There are no children in this family.
-
-Family ID: @F16@
-Husband: @I25@ : MarryDaughter ParentsMarryChildren
-Wife: @I26@ : MarryFather ParentsMarryChildren
-Children:  @I26@ MarryFather ParentsMarryChildren
-
-Issues
-There are 1 issues found. Error: Husband and Wife are same person in family. @F15@
-GosinMacBook-Pro:gedcom Gosin$
-GosinMacBook-Pro:gedcom Gosin$ python gedcom.py fixtures/acctestfamily.ged
-There are 27 individuals in this House.
+There are 30 individuals in this House.
 Here is the list:
 @I1@: Papa Bear
 @I2@: Mama Bear
@@ -144,8 +27,11 @@ Here is the list:
 @I25@: MarryDaughter ParentsMarryChildren
 @I26@: MarryFather ParentsMarryChildren
 @I27@: Poorman DeadBeforeBirth
+@I28@: Superman ChildBeforeParents
+@I29@: Superwoman ChildBeforeParents
+@I30@: Superboy ChildBeforeParents
 
-There are 16 families in this House.
+There are 17 families in this House.
 Here is the list:
 
 Family ID: @F1@
@@ -227,6 +113,11 @@ Family ID: @F16@
 Husband: @I25@ : MarryDaughter ParentsMarryChildren
 Wife: @I26@ : MarryFather ParentsMarryChildren
 Children:  @I26@ MarryFather ParentsMarryChildren
+
+Family ID: @F17@
+Husband: @I28@ : Superman ChildBeforeParents
+Wife: @I29@ : Superwoman ChildBeforeParents
+Children:  @I30@ Superboy ChildBeforeParents
 
 Issues
 There are 1 issues found. Error: Husband and Wife are same person in family. @F15@

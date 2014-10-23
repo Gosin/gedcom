@@ -269,6 +269,30 @@
 2 DATE 3 MAR 1989
 1 DEAT
 2 DATE 5 MAY 1980
+0 @I28@ INDI
+1 NAME Superman /ChildBeforeParents/
+2 GIVN Superman
+2 SURN ChildBeforeParents
+1 SEX M
+1 BIRT
+2 DATE 4 MAR 1989
+1 FAMS @F17@
+0 @I29@ INDI
+1 NAME Superwoman /ChildBeforeParents/
+2 GIVN Superwoman
+2 SURN ChildBeforeParents
+1 SEX F
+1 BIRT
+2 DATE 12 OCT 1990
+1 FAMS @F17@
+0 @I30@ INDI
+1 NAME Superboy /ChildBeforeParents/
+2 GIVN Superboy
+2 SURN ChildBeoforeParents
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 1985
+1 FAMC @F17@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
@@ -387,4 +411,10 @@
 1 CHIL @I26@
 1 MARR
 2 DATE 6 JUN 2008
+0 @F17@ FAM
+1 HUSB @I28@
+1 WIFE @I29@
+1 CHIL @I30@
+1 MARR
+2 DATE 10 SEP 2010
 0 TRLR
