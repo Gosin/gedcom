@@ -109,7 +109,7 @@ def main(arg1):
     gatherInfo(input_file)
     outputIndiSummary(individuals)
     print 
-    outputFamSummary(families)
+    outputFamSummary(families, individuals)
     print
     print
     print "Issues"

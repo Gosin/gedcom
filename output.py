@@ -1,20 +1,19 @@
 from AnomalyCheck import Anomalies
 from family import Family
+from individual import Individual
 
 def outputIndiSummary(individuals):
 
-	total_indis = len(individuals)
-	print "There are %s individuals in this House." % total_indis
+	print "There are %s individuals in this House." % len(individuals)
 	print "Here is the list: "
 	for indi in individuals:
 		indi_id = individuals[indi].getID()
 		indi_name = individuals[indi].getName()
 		print indi_id + ": " + indi_name
 
-def outputFamSummary(families):
+def outputFamSummary(families, individuals):
 
-	total_fams = len(families)
-	print "There are %s families in this House." % total_fams
+	print "There are %s families in this House." % len(families)
 	print "Here is the list: ",
 	for fam in families:
 		print "\n"
@@ -23,13 +22,16 @@ def outputFamSummary(families):
 		fam_wife = families[fam].getWife()
 		fam_chil = families[fam].getChil()
 		print "Family ID: " + fam_id
-		print "Husband: " + fam_husb + ", Wife: " + fam_wife
+		if fam_husb:
+			print "Husband: " + fam_husb + " : " +  getNameFromID(individuals, fam_husb) 
+		if fam_wife:
+			print	"Wife: " + fam_wife + " : "  + getNameFromID(individuals, fam_wife)
 		if fam_chil:
 			print "Children: ",
 			for child in fam_chil:
-				print child + " ",
+				print child + " " + getNameFromID(individuals, child),
 		else:
-			print "There're no children in this family.",
+			print "There are no children in this family.",
 			
 def outputAnomalies(anomalies):
 	print "There are %s issues found." % len(anomalies),
@@ -38,6 +40,12 @@ def outputAnomalies(anomalies):
 		if isinstance(a[1], Family):
 			print a[1].getFamID()
 
+def getNameFromID(individuals,ID):
+	for i in individuals:
+		if individuals[i].getID() == ID:
+			return individuals[i].getName()
+	
+	return None
 
 	
 	
