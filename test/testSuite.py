@@ -6,11 +6,19 @@ from familyTest import FamilyTest
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(GedcomTest())
-    suite.addTest(IndividualTest())
-    suite.addTest(FamilyTest())
+    for method in dir(GedcomTest):
+        if method.startswith("test"):
+            suite.addTest(GedcomTest(method))
+    for method in dir(IndividualTest):
+        if method.startswith("test"):
+            suite.addTest(IndividualTest(method))
+    for method in dir(FamilyTest):
+        if method.startswith("test"):
+            suite.addTest(FamilyTest(method))
+
     return suite
 
 
 if __name__ == '__main__':
-    unittest.TextTestRunner.run(suite())
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
