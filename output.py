@@ -34,11 +34,13 @@ def outputFamSummary(families, individuals):
 			print "There are no children in this family.",
 			
 def outputAnomalies(anomalies):
-	print "There are %s issues found." % len(anomalies),
 	for a in anomalies:
 		print Anomalies().getMessage(a[0]), 
 		if isinstance(a[1], Family):
 			print a[1].getFamID()
+		
+		if isinstance(a[1], Individual):
+			print a[1].getID() + ": " + a[1].getName()
 
 def getNameFromID(individuals,ID):
 	for i in individuals:

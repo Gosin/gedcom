@@ -19,7 +19,7 @@ class OutputTest(unittest.TestCase):
         self.fam1 = Family()
         self.fam1.addFamID('@F2@')
         self.fam1.addHusb('@I2@')
-#        self.fam1.addWife('@I2@')
+        self.fam1.addWife('@I2@')
         self.fam1.addChil('@I2@')
         self.fam1.addChil('@I2@')
 
@@ -29,8 +29,8 @@ class OutputTest(unittest.TestCase):
         self.families =  dict()
         self.families["one"] = self.fam1
         
-#    def test_outputIndiSummary(self):
-#        outputIndiSummary(self.individuals)
+    def test_outputIndiSummary(self):
+        outputIndiSummary(self.individuals)
 
     def test_outputFamSummary(self):
         outputFamSummary(self.families, self.individuals)

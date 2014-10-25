@@ -113,6 +113,7 @@ def main(arg1):
     print
     print
     print "Issues"
+    outputAnomalies(checkAnomalies(individuals))
     outputAnomalies(checkAnomalies(families))
 
     
