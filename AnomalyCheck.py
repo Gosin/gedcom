@@ -1,6 +1,4 @@
 from datetime import datetime
-from family import Family
-from individual import Individual
 
 
 class Anomalies(object):
@@ -9,6 +7,7 @@ class Anomalies(object):
         self.messages["checkSameHusbWife"] = "Error: Husband and Wife are same person in family."
         self.messages["checkDeathBeforeBirth"] = "Error: Date of Death is before Date of Birth."
         self.messages["checkMarryDead"] = "Error: Date of marriage is after Date of spouse's death."
+        self.messages["checkChildBeforeParents"] = "Error: Children born before parents."
 
     def getMessage(self, messageId):
         return self.messages[messageId]
@@ -28,7 +27,6 @@ def getDeathFromID(id, individuals):
             return individuals[indi].getDeat()
     return None
 
-
 def checkMarryDead(fam, individuals):
     a = False
     b = False
@@ -44,6 +42,28 @@ def checkMarryDead(fam, individuals):
 
     return (a or b)
 
+def getBirhtFromID(id, individuals):
+    for indi in individuals:
+        if individuals[indi].getBirt() and individuals[indi].getID() == id:
+            return individuals[indi].getBirt()
+    return None
+
+def checkChildBeforeParents(fam, individuals):
+    date_format = "%d %b %Y"
+    father = datetime.strptime(getBirhtFromID(fam.getHusb(), individuals), date_format)
+    mother = datetime.strptime(getBirhtFromID(fam.getWife(), individuals), date_format)
+    anomaly_count = 0
+    if fam.getChil():
+        for child in fam.getChil():
+            birth_of_child = datetime.strptime(getBirhtFromID(child, individuals), date_format)
+            if birth_of_child < father or birth_of_child < mother:
+                anomaly_count += 1
+    if anomaly_count > 0:
+        return True
+    else:
+        return False
+
+
 
 def checkAnomalies(individuals, families):
     anomalies = []
@@ -55,4 +75,6 @@ def checkAnomalies(individuals, families):
             anomalies.append(("checkSameHusbWife", families.get(fam)))
         if checkMarryDead(families.get(fam), individuals):
             anomalies.append(("checkMarryDead", families.get(fam)))
+        if checkChildBeforeParents(families.get(fam), individuals):
+            anomalies.append(("checkChildBeforeParents", families.get(fam)))
     return anomalies

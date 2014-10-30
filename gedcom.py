@@ -15,10 +15,6 @@ from output import outputIndiSummary
 individuals = dict()
 families = dict()
 
-VALID_TAGS = ["INDI", "NAME", "SEX", "BIRT", "DEAT",\
-              "FAMC", "FAMS", "FAM", "MARR", "HUSB",\
-              "WIFE", "CHIL", "DIV", "DATE", "TRLR",\
-              "NOTE"]
 extract_re = '([0-9]*) (@?\w+@?)\s*([^\n\r]*)'
 
 def gatherInfo(input_file):

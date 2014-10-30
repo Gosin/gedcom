@@ -4,7 +4,7 @@ from individual import Individual
 from AnomalyCheck import checkSameHusbWife
 from AnomalyCheck import checkDeathBeforeBirth
 from AnomalyCheck import checkMarryDead
-from AnomalyCheck import getDeathFromID
+from AnomalyCheck import checkChildBeforeParents
 
 
 class GedcomTest(unittest.TestCase):
@@ -27,11 +27,23 @@ class GedcomTest(unittest.TestCase):
         self.indi3.addSex('F')
         self.indi3.addBirt('21 APR 1980')
         self.indi3.addDeat('12 SEP 2014')
+        self.indi4 = Individual()
+        self.indi4.addID('@I4@')
+        self.indi4.addName('Mike Rivas')
+        self.indi4.addSex('M')
+        self.indi4.addBirt('21 APR 1976')
+        self.indi5 = Individual()
+        self.indi5.addID('@I5@')
+        self.indi5.addName('Mike Rivas')
+        self.indi5.addSex('M')
+        self.indi5.addBirt('21 APR 2012')
 
         self.individuals = dict()
         self.individuals['1'] = self.indi1
         self.individuals['2'] = self.indi2
         self.individuals['3'] = self.indi3
+        self.individuals['4'] = self.indi4
+        self.individuals['5'] = self.indi5
 
         
         self.fam1 = Family()
@@ -59,9 +71,15 @@ class GedcomTest(unittest.TestCase):
         self.fam4.addHusb('@I1@')
         self.fam4.addWife('@I3@')
         self.fam4.addChil('@I4@')
-        self.fam4.addChil('@I5@')
         self.fam4.addMarr('5 OCT 1999')
         self.fam4.addDiv('12 JUN 2012')
+        self.fam5 = Family()
+        self.fam5.addFamID('@F5@')
+        self.fam5.addHusb('@I1@')
+        self.fam5.addWife('@I3@')
+        self.fam5.addChil('@I5@')
+        self.fam5.addMarr('5 OCT 1999')
+        self.fam5.addDiv('12 JUN 2012')
 
     def test_checkSameHusbWife(self):
         self.assertTrue(checkSameHusbWife(self.fam2))
@@ -83,8 +101,11 @@ class GedcomTest(unittest.TestCase):
 
     def test_checkMarryDead(self):
         self.assertTrue(checkMarryDead(self.fam3, self.individuals))
-        checkMarryDead(self.fam3, self.individuals)
         self.assertFalse(checkMarryDead(self.fam4, self.individuals))
+
+    def test_checkChildBeforeParents(self):
+        self.assertTrue(checkChildBeforeParents(self.fam4, self.individuals))
+        self.assertFalse(checkChildBeforeParents(self.fam5, self.individuals))
 
         
 
