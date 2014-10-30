@@ -121,4 +121,6 @@ Children:  @I30@ Superboy ChildBeforeParents
 
 Issues
 Error: Date of Death is before Date of Birth. @I27@: Poorman DeadBeforeBirth
+Error: Date of marriage is after Date of spouse's death. @F3@
+Error: Date of marriage is after Date of spouse's death. @F9@
 Error: Husband and Wife are same person in family. @F15@
