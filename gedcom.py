@@ -102,7 +102,6 @@ def gatherInfo(input_file):
                 else:
                     pass
 
-    
 
 def main(arg1):
     input_file = open(arg1, 'r')
@@ -113,10 +112,8 @@ def main(arg1):
     print
     print
     print "Issues"
-    outputAnomalies(checkAnomalies(individuals))
-    outputAnomalies(checkAnomalies(families))
+    outputAnomalies(checkAnomalies(individuals, families))
 
-    
 
 if __name__ == '__main__':
     main(sys.argv[1])
