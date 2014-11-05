@@ -8,6 +8,8 @@ class Anomalies(object):
         self.messages["checkDeathBeforeBirth"] = "Error: Date of Death is before Date of Birth."
         self.messages["checkMarryDead"] = "Error: Date of marriage is after Date of spouse's death."
         self.messages["checkChildBeforeParents"] = "Error: Children born before parents."
+        self.messages["checkWifeIsMale"] = "Anomaly: Wife is male."
+        self.messages["checkHusbandIsFemale"] = "Anomaly: Husband is female."
 
     def getMessage(self, messageId):
         return self.messages[messageId]
@@ -21,9 +23,9 @@ def checkDeathBeforeBirth(individual):
     if individual.getBirt() and individual.getDeat(): 
         return datetime.strptime(individual.getDeat(), date_format) < datetime.strptime(individual.getBirt(), date_format)
 
-def getDeathFromID(id, individuals):
+def getDeathFromID(ID, individuals):
     for indi in individuals:
-        if individuals[indi].getDeat() and individuals[indi].getID() == id:
+        if individuals[indi].getDeat() and individuals[indi].getID() == ID:
             return individuals[indi].getDeat()
     return None
 
@@ -42,9 +44,9 @@ def checkMarryDead(fam, individuals):
 
     return (a or b)
 
-def getBirhtFromID(id, individuals):
+def getBirhtFromID(ID, individuals):
     for indi in individuals:
-        if individuals[indi].getBirt() and individuals[indi].getID() == id:
+        if individuals[indi].getBirt() and individuals[indi].getID() == ID:
             return individuals[indi].getBirt()
     return None
 
@@ -64,7 +66,22 @@ def checkChildBeforeParents(fam, individuals):
         return False
 
 
+def checkWifeIsMale(fam, individuals):
+    if fam.getWife():
+        for indi in individuals:
+            if individuals[indi].getID() == fam.getWife():
+                return individuals[indi].getSex()  == "M"
+    else:
+        return False
 
+def checkHusbandIsFemale(fam, individuals):
+    if fam.getHusb():
+        for indi in individuals:
+            if individuals[indi].getID() == fam.getHusb():
+                return individuals[indi].getSex()  == "F"
+    else:
+        return False
+    
 def checkAnomalies(individuals, families):
     anomalies = []
     for indi in individuals:
@@ -77,4 +94,8 @@ def checkAnomalies(individuals, families):
             anomalies.append(("checkMarryDead", families.get(fam)))
         if checkChildBeforeParents(families.get(fam), individuals):
             anomalies.append(("checkChildBeforeParents", families.get(fam)))
+        if checkWifeIsMale(families.get(fam), individuals):
+            anomalies.append(("checkWifeIsMale", families.get(fam)))
+        if checkHusbandIsFemale(families.get(fam), individuals):
+            anomalies.append(("checkHusbandIsFemale", families.get(fam)))
     return anomalies

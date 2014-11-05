@@ -5,6 +5,8 @@ from AnomalyCheck import checkSameHusbWife
 from AnomalyCheck import checkDeathBeforeBirth
 from AnomalyCheck import checkMarryDead
 from AnomalyCheck import checkChildBeforeParents
+from AnomalyCheck import checkWifeIsMale
+from AnomalyCheck import checkHusbandIsFemale
 
 
 class GedcomTest(unittest.TestCase):
@@ -107,7 +109,17 @@ class GedcomTest(unittest.TestCase):
         self.assertTrue(checkChildBeforeParents(self.fam4, self.individuals))
         self.assertFalse(checkChildBeforeParents(self.fam5, self.individuals))
 
+    def test_checkWifeIsMale(self):
+        self.fam1.addWife('@I1@')
+        self.assertTrue(checkWifeIsMale(self.fam1, self.individuals))
+        self.fam1.addWife('@I2@')
+        self.assertFalse(checkWifeIsMale(self.fam1, self.individuals))   
         
+    def test_checkHusbandIsFemale(self):
+        self.fam1.addHusb('@I2@')
+        self.assertTrue(checkHusbandIsFemale(self.fam1, self.individuals))
+        self.fam1.addHusb('@Ii@')
+        self.assertFalse(checkHusbandIsFemale(self.fam1, self.individuals))        
 
 if __name__ == '__main__':
     unittest.main()
