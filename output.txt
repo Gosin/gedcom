@@ -18,7 +18,7 @@ Here is the list:
 @I16@: Flame Bear
 @I17@: Sadie TwoSpouses
 @I18@: Cheer Bear
-@I19@: Marley MarriedTooYound
+@I19@: Marley MarriedTooYoung
 @I20@: Tramp OneDivorceTooMany
 @I21@: Spot OneDivorceTooMany
 @I22@: Benji OneDivorceTooMany
@@ -80,7 +80,7 @@ Wife: @I10@ : Lassie DeathBeforeMarriage
 There are no children in this family. 
 
 Family ID: @F10@
-Husband: @I19@ : Marley MarriedTooYound
+Husband: @I19@ : Marley MarriedTooYoung
 Wife: @I18@ : Cheer Bear
 There are no children in this family. 
 
@@ -123,8 +123,10 @@ Issues
 Error: Date of Death is before Date of Birth. @I27@: Poorman DeadBeforeBirth
 Error: Date of marriage is after Date of spouse's death. @F3@
 Anomaly: Wife is male. @F5@
+Anomaly: Married at young age. @F5@
 Anomaly: Husband is female. @F7@
 Error: Date of marriage is after Date of spouse's death. @F9@
+Anomaly: Married at young age. @F10@
 Error: Husband and Wife are same person in family. @F15@
 Anomaly: Wife is male. @F15@
 Error: Children born before parents. @F17@

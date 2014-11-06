@@ -7,6 +7,8 @@ from AnomalyCheck import checkMarryDead
 from AnomalyCheck import checkChildBeforeParents
 from AnomalyCheck import checkWifeIsMale
 from AnomalyCheck import checkHusbandIsFemale
+from AnomalyCheck import marriedTooYoung
+from AnomalyCheck import marriedBeforeBirth
 
 
 class GedcomTest(unittest.TestCase):
@@ -119,7 +121,29 @@ class GedcomTest(unittest.TestCase):
         self.fam1.addHusb('@I2@')
         self.assertTrue(checkHusbandIsFemale(self.fam1, self.individuals))
         self.fam1.addHusb('@Ii@')
-        self.assertFalse(checkHusbandIsFemale(self.fam1, self.individuals))        
+        self.assertFalse(checkHusbandIsFemale(self.fam1, self.individuals))  
+    
+    def test_marriedBeforeBirth(self):      
+        self.indi1.addBirt('9 MAY 1915')
+        self.indi2.addBirt('21 APR 1980')
+        self.fam1.addMarr('9 MAY 1914')
+        self.assertTrue(marriedBeforeBirth(self.fam1, self.individuals))
+        self.indi1.addBirt('9 MAY 1800')
+        self.indi2.addBirt('21 APR 1980')
+        self.fam1.addMarr('9 MAY 1994')
+        self.assertFalse(marriedBeforeBirth(self.fam1, self.individuals))
 
+        
+    def test_marriedTooYoung(self):      
+        self.indi1.addBirt('9 MAY 1900')
+        self.indi2.addBirt('21 APR 1980')
+        self.fam1.addMarr('9 MAY 1914')
+        self.assertTrue(marriedTooYoung(self.fam1, self.individuals))
+        self.indi1.addBirt('9 MAY 1800')
+        self.indi2.addBirt('21 APR 1980')
+        self.fam1.addMarr('9 MAY 1994')
+        self.assertFalse(marriedTooYoung(self.fam1, self.individuals))
+        
+        
 if __name__ == '__main__':
     unittest.main()
