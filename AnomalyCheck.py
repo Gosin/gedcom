@@ -2,8 +2,6 @@ from datetime import datetime
 from datetime import timedelta
 
 
-date_format = "%d %b %Y"
-
 class Anomalies(object):
     def __init__(self):
         self.messages = dict()
@@ -15,17 +13,22 @@ class Anomalies(object):
         self.messages["checkHusbandIsFemale"] = "Anomaly: Husband is female."
         self.messages["marriedBeforeBirth"] = "Error: Married before birth."
         self.messages["marriedTooYoung"] = "Anomaly: Married at young age."
+        self.messages["divorceBeforeMarriage"] = "Anomaly: Divorce before marriage."
 
     def getMessage(self, messageId):
         return self.messages[messageId]
 
+
+def getDate(gedDate):
+    date_format = "%d %b %Y"
+    return  datetime.strptime(gedDate, date_format)
 
 def checkSameHusbWife(fam):
     return fam.getHusb() == fam.getWife()
 
 def checkDeathBeforeBirth(individual):
     if individual.getBirt() and individual.getDeat(): 
-        return datetime.strptime(individual.getDeat(), date_format) < datetime.strptime(individual.getBirt(), date_format)
+        return getDate(individual.getDeat()) < getDate(individual.getBirt())
 
 def getDeathFromID(ID, individuals):
     for indi in individuals:
@@ -36,14 +39,13 @@ def getDeathFromID(ID, individuals):
 def checkMarryDead(fam, individuals):
     a = False
     b = False
-    marry_date = datetime.strptime(fam.getMarr(), date_format)
     if getDeathFromID(fam.getHusb(), individuals):
-        husb_death = datetime.strptime(getDeathFromID(fam.getHusb(), individuals), date_format)
-        a = husb_death < marry_date
+        husb_death = getDate(getDeathFromID(fam.getHusb(), individuals))
+        a = husb_death < getDate(fam.getMarr())
 
     if getDeathFromID(fam.getWife(), individuals):
-        wife_death = datetime.strptime(getDeathFromID(fam.getWife(), individuals), date_format)
-        b = wife_death < marry_date
+        wife_death = getDate(getDeathFromID(fam.getWife(), individuals))
+        b = wife_death < getDate(fam.getMarr())
 
     return (a or b)
 
@@ -61,12 +63,12 @@ def getSexFromID(ID, individuals):
 
 
 def checkChildBeforeParents(fam, individuals):
-    father = datetime.strptime(getBirthFromID(fam.getHusb(), individuals), date_format)
-    mother = datetime.strptime(getBirthFromID(fam.getWife(), individuals), date_format)
+    father = getDate(getBirthFromID(fam.getHusb(), individuals))
+    mother = getDate(getBirthFromID(fam.getWife(), individuals))
     anomaly_count = 0
     if fam.getChil():
         for child in fam.getChil():
-            birth_of_child = datetime.strptime(getBirthFromID(child, individuals), date_format)
+            birth_of_child = getDate(getBirthFromID(child, individuals))
             if birth_of_child < father or birth_of_child < mother:
                 anomaly_count += 1
     if anomaly_count > 0:
@@ -81,21 +83,33 @@ def checkWifeIsMale(fam, individuals):
 def checkHusbandIsFemale(fam, individuals):
     return getSexFromID(fam.getHusb(), individuals)  == "F"
 
-def marriedBeforeBirth(fam, individuals):
-    marry_date = datetime.strptime(fam.getMarr(), date_format)
-    if marry_date < datetime.strptime(getBirthFromID(fam.getHusb(), individuals), date_format):
+def deathBeforeMarriage(fam, individuals):
+    if  getDeathFromID(fam.getHusb(), individuals) and getDate(getDeathFromID(fam.getHusb(), individuals)) < getDate(fam.getMarr()):
         return True
-    elif marry_date < datetime.strptime(getBirthFromID(fam.getWife(), individuals), date_format):
+    elif getDeathFromID(fam.getWife(), individuals) and getDate(getDeathFromID(fam.getWife(), individuals)) < getDate(fam.getMarr()):
+        return True
+    else:
+        return False
+
+def divorceBeforeMarriage(fam, individuals):
+    if fam.getDiv() and fam.getMarr():
+        return getDate(fam.getDiv()) < getDate(fam.getMarr()) 
+    else:
+        return False
+
+def marriedBeforeBirth(fam, individuals):
+    if getDate(fam.getMarr()) < getDate(getBirthFromID(fam.getHusb(), individuals)):
+        return True
+    elif getDate(fam.getMarr()) < getDate(getBirthFromID(fam.getWife(), individuals)):
         return True
     else:
         return False
     
 def marriedTooYoung(fam, individuals):
     MARRYING_AGE = 5113
-    marry_date = datetime.strptime(fam.getMarr(), date_format)
-    if marry_date - datetime.strptime(getBirthFromID(fam.getHusb(), individuals), date_format) < timedelta(days=MARRYING_AGE):
+    if getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getHusb(), individuals)) < timedelta(days=MARRYING_AGE):
         return True
-    elif  marry_date - datetime.strptime(getBirthFromID(fam.getWife(), individuals), date_format) < timedelta(days=MARRYING_AGE):
+    elif  getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getWife(), individuals)) < timedelta(days=MARRYING_AGE):
         return True
     else:
         return False
@@ -120,4 +134,6 @@ def checkAnomalies(individuals, families):
             anomalies.append(("marriedBeforeBirth", families.get(fam)))
         if marriedTooYoung(families.get(fam), individuals):
             anomalies.append(("marriedTooYoung", families.get(fam)))
+        if divorceBeforeMarriage(families.get(fam), individuals):
+            anomalies.append(("divorceBeforeMarriage", families.get(fam)))
     return anomalies
