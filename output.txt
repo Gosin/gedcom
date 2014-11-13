@@ -1,4 +1,4 @@
-There are 30 individuals in this House.
+There are 37 individuals in this House.
 Here is the list: 
 @I1@: Papa Bear
 @I2@: Mama Bear
@@ -30,8 +30,15 @@ Here is the list:
 @I28@: Superman ChildBeforeParents
 @I29@: Superwoman ChildBeforeParents
 @I30@: Superboy ChildBeforeParents
+@I31@: John SameDadandSon
+@I32@: Mary SameDadandSon
+@I33@: Johnson MultipleParents
+@I34@: John MultipleParents
+@I35@: Mary MultipleParents
+@I36@: John ParentsSet1
+@I37@: Mary ParentsSet1
 
-There are 17 families in this House.
+There are 20 families in this House.
 Here is the list:  
 
 Family ID: @F1@
@@ -117,7 +124,22 @@ Children:  @I26@ MarryFather ParentsMarryChildren
 Family ID: @F17@
 Husband: @I28@ : Superman ChildBeforeParents
 Wife: @I29@ : Superwoman ChildBeforeParents
-Children:  @I30@ Superboy ChildBeforeParents
+Children:  @I30@ Superboy ChildBeforeParents 
+
+Family ID: @F18@
+Husband: @I31@ : John SameDadandSon
+Wife: @I32@ : Mary SameDadandSon
+Children:  @I31@ John SameDadandSon 
+
+Family ID: @F19@
+Husband: @I34@ : John MultipleParents
+Wife: @I35@ : Mary MultipleParents
+Children:  @I33@ Johnson MultipleParents 
+
+Family ID: @F20@
+Husband: @I36@ : John ParentsSet1
+Wife: @I37@ : Mary ParentsSet1
+Children:  @I33@ Johnson MultipleParents
 
 Issues
 Error: Date of Death is before Date of Birth. @I27@: Poorman DeadBeforeBirth
@@ -130,3 +152,4 @@ Anomaly: Married at young age. @F10@
 Error: Husband and Wife are same person in family. @F15@
 Anomaly: Wife is male. @F15@
 Error: Children born before parents. @F17@
+Error: Children born before parents. @F18@
