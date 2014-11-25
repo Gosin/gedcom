@@ -11,6 +11,7 @@ from AnomalyCheck import marriedTooYoung
 from AnomalyCheck import marriedBeforeBirth
 from AnomalyCheck import deathBeforeMarriage
 from AnomalyCheck import divorceBeforeMarriage
+from AnomalyCheck import tooManyChildren
 
 
 class GedcomTest(unittest.TestCase):
@@ -171,6 +172,17 @@ class GedcomTest(unittest.TestCase):
         self.assertFalse(divorceBeforeMarriage(self.fam1, self.individuals))
         self.assertFalse(divorceBeforeMarriage(self.fam2, self.individuals))
         
+    def test_tooManyChildren(self):
+        self.assertFalse(tooManyChildren(self.fam1))
+        famT = Family()
+        self.assertFalse(tooManyChildren(famT))
+        famT.addChil("1")
+        famT.addChil("2")
+        famT.addChil("3")
+        famT.addChil("4")
+        famT.addChil("5")
+        self.assertTrue(tooManyChildren(famT))
+
                 
 if __name__ == '__main__':
     unittest.main()

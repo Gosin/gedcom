@@ -2,8 +2,6 @@
 
 SSW555 Stevens IT Team Two
 
-Not Family Tree, It's Family Graph
-
 '''
 import sys
 import re
@@ -23,6 +21,7 @@ def gatherInfo(input_file, individuals, families):
 
     # tag category: 0 for indi, 1 for fam, 2 for others
     tagCat = 2
+
     prevTag = ''
     tempID = ''
     tempFamID = ''
@@ -43,6 +42,7 @@ def gatherInfo(input_file, individuals, families):
                     tempFamID = int(re.sub(r'@+|F+', "", part2))
                 else:
                     tagCat = 2
+
             elif part1 == '1':
                 if tagCat == 0:
                     prevTag = addIndiInfo(part2, part3, tempID, individuals)
@@ -121,6 +121,8 @@ def addFamDate(prevTag, tempFamID, families, part3):
         families[tempFamID].addDiv(part3)
     else:
         pass
+
+
 
 
 def main(arg1):
