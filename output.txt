@@ -1,4 +1,4 @@
-There are 42 individuals in this House.
+There are 43 individuals in this House.
 Here is the list: 
 @I1@: Papa Bear
 @I2@: Mama Bear
@@ -37,6 +37,7 @@ Here is the list:
 @I35@: Mary MultipleParents
 @I36@: John ParentsSet1
 @I37@: Mary ParentsSet1
+@I38@: Bear BornInTheNextCentury
 @I42@: Cheer2 Bear
 @I43@: Cheer3 Bear
 @I44@: Cheer4 Bear
@@ -69,7 +70,7 @@ There are no children in this family.
 Family ID: @F5@
 Husband: @I12@ : Toto Wife Is Male
 Wife: @I4@ : BooBoo
-There are no children in this family. 
+Children:  @I38@ Bear BornInTheNextCentury 
 
 Family ID: @F6@
 Husband: @I5@ : Baby Bear
@@ -151,6 +152,7 @@ Error: Date of Death is before Date of Birth. @I27@: Poorman DeadBeforeBirth
 Error: Date of marriage is after Date of spouse's death. @F3@
 Anomaly: Wife is male. @F5@
 Anomaly: Married at young age. @F5@
+Anomaly: Child born to older parent. @F5@
 Anomaly: Large number of children. @F6@
 Anomaly: Husband is female. @F7@
 Error: Date of marriage is after Date of spouse's death. @F9@

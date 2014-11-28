@@ -12,6 +12,7 @@ from AnomalyCheck import marriedBeforeBirth
 from AnomalyCheck import deathBeforeMarriage
 from AnomalyCheck import divorceBeforeMarriage
 from AnomalyCheck import tooManyChildren
+from AnomalyCheck import tooOldParent
 
 
 class GedcomTest(unittest.TestCase):
@@ -182,6 +183,14 @@ class GedcomTest(unittest.TestCase):
         famT.addChil("4")
         famT.addChil("5")
         self.assertTrue(tooManyChildren(famT))
+        
+    def test_tooOldParent(self):
+        self.assertFalse(tooOldParent(self.fam1, self.individuals))
+        self.indi1.addBirt('9 MAY 1578')
+        self.assertTrue(tooOldParent(self.fam1, self.individuals))
+        self.indi1.addBirt('9 MAY 1978')
+        self.indi4.addBirt('21 APR 2076')
+        self.assertTrue(tooOldParent(self.fam1, self.individuals))
 
                 
 if __name__ == '__main__':

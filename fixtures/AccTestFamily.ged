@@ -311,6 +311,13 @@
 1 SEX M
 1 BIRT
 2 DATE 4 MAR 1989
+0 @I38@ INDI
+1 NAME Bear /BornInTheNextCentury/
+2 GIVN Brown
+2 SURN BornInTheNextCentury
+1 SEX M
+1 BIRT
+2 DATE 4 MAR 2200
 1 FAMS @F17@
 0 @I29@ INDI
 1 NAME Superwoman /ChildBeforeParents/
@@ -414,6 +421,7 @@
 0 @F5@ FAM
 1 HUSB @I12@
 1 WIFE @I4@
+1 CHIL @I38@
 1 MARR
 2 DATE 12 SEP 1980
 2 PLAC Oz

@@ -15,6 +15,7 @@ class Anomalies(object):
         self.messages["marriedTooYoung"] = "Anomaly: Married at young age."
         self.messages["divorceBeforeMarriage"] = "Anomaly: Divorce before marriage."
         self.messages["tooManyChildren"] = "Anomaly: Large number of children."
+        self.messages["tooOldParent"] = "Anomaly: Child born to older parent."
         
 
     def getMessage(self, messageId):
@@ -119,6 +120,16 @@ def marriedTooYoung(fam, individuals):
 def tooManyChildren(fam):
     CHILDREN_MAX = 4
     return len(fam.getChil()) > CHILDREN_MAX
+
+def tooOldParent(fam, individuals):
+    PARENT_AGE_MAX = 21915
+    for child in fam.getChil():
+        if getDate(getBirthFromID(child, individuals)) - getDate(getBirthFromID(fam.getHusb(), individuals)) > timedelta(days=PARENT_AGE_MAX):
+            return True
+        elif getDate(getBirthFromID(child, individuals)) - getDate(getBirthFromID(fam.getWife(), individuals)) > timedelta(days=PARENT_AGE_MAX):
+            return True
+        else:
+            return False
     
 def checkAnomalies(individuals, families):
     anomalies = []
@@ -144,4 +155,6 @@ def checkAnomalies(individuals, families):
             anomalies.append(("divorceBeforeMarriage", families.get(fam)))
         if tooManyChildren(families.get(fam)):
             anomalies.append(("tooManyChildren", families.get(fam)))
+        if tooOldParent(families.get(fam), individuals):
+            anomalies.append(("tooOldParent", families.get(fam)))
     return anomalies
