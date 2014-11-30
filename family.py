@@ -43,3 +43,9 @@ class Family(object):
 
     def getDiv(self):
         return self.div
+
+    def divorceStatus(self):
+        if self.div:
+            return True
+        else:
+            return False
