@@ -13,6 +13,7 @@ from AnomalyCheck import deathBeforeMarriage
 from AnomalyCheck import divorceBeforeMarriage
 from AnomalyCheck import tooManyChildren
 from AnomalyCheck import tooOldParent
+from AnomalyCheck import marriedMoreThanOnePerson
 
 
 class GedcomTest(unittest.TestCase):
@@ -88,6 +89,8 @@ class GedcomTest(unittest.TestCase):
         self.fam5.addChil('@I5@')
         self.fam5.addMarr('5 OCT 1999')
         self.fam5.addDiv('12 JUN 2012')
+        
+
 
     def test_checkSameHusbWife(self):
         self.assertTrue(checkSameHusbWife(self.fam2))
@@ -140,12 +143,16 @@ class GedcomTest(unittest.TestCase):
         
     def test_marriedTooYoung(self):      
         self.indi1.addBirt('9 MAY 1900')
-        self.indi2.addBirt('21 APR 1980')
-        self.fam1.addMarr('9 MAY 1914')
+        self.indi2.addBirt('21 APR 1900')
+        self.fam1.addMarr('9 MAY 1912')
         self.assertTrue(marriedTooYoung(self.fam1, self.individuals))
         self.indi1.addBirt('9 MAY 1800')
         self.indi2.addBirt('21 APR 1980')
         self.fam1.addMarr('9 MAY 1994')
+        self.assertFalse(marriedTooYoung(self.fam1, self.individuals))
+        self.indi1.addBirt('9 MAY 1800')
+        self.indi2.addBirt('21 APR 1980')
+        self.fam1.addMarr('9 MAY 1600')
         self.assertFalse(marriedTooYoung(self.fam1, self.individuals))
         
     def test_deathBeforeMarriage(self):
@@ -191,7 +198,31 @@ class GedcomTest(unittest.TestCase):
         self.indi1.addBirt('9 MAY 1978')
         self.indi4.addBirt('21 APR 2076')
         self.assertTrue(tooOldParent(self.fam1, self.individuals))
+        
+    def test_marriedMoreThanOnePerson(self):
+        self.families = dict()
+        self.famA = Family()
+        self.famA.addFamID('@A1@')
+        self.famA.addHusb('@H1@')
+        self.famA.addWife('@W1@')
+        self.families['1'] = self.famA
+        self.assertFalse(marriedMoreThanOnePerson(self.families))   
 
+        self.famB = Family()
+        self.famB.addFamID('@B1@')
+        self.famB.addHusb('@H2@')
+        self.famB.addWife('@W2@')
+        self.families['2'] = self.famB
+        self.assertFalse(marriedMoreThanOnePerson(self.families))
+        
+        self.famB.addWife('@W1@')
+        self.assertTrue(marriedMoreThanOnePerson(self.families))
+        
+        self.famA.addDiv('12 JUN 2012')
+        self.famB.addWife('@W1@')
+        self.assertFalse(marriedMoreThanOnePerson(self.families))
+
+        
                 
 if __name__ == '__main__':
     unittest.main()

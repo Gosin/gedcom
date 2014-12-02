@@ -1,4 +1,4 @@
-There are 43 individuals in this House.
+There are 44 individuals in this House.
 Here is the list: 
 @I1@: Papa Bear
 @I2@: Mama Bear
@@ -37,14 +37,15 @@ Here is the list:
 @I35@: Mary MultipleParents
 @I36@: John ParentsSet1
 @I37@: Mary ParentsSet1
-@I38@: Bear BornInTheNextCentury
+@I38@: Bob MarriedBeforeBirth
+@I39@: Alice MarriedBeforeBirth
 @I42@: Cheer2 Bear
 @I43@: Cheer3 Bear
 @I44@: Cheer4 Bear
 @I45@: Cheer5 Bear
 @I46@: Cheer6 Bear
 
-There are 20 families in this House.
+There are 21 families in this House.
 Here is the list:  
 
 Family ID: @F1@
@@ -70,7 +71,7 @@ There are no children in this family.
 Family ID: @F5@
 Husband: @I12@ : Toto Wife Is Male
 Wife: @I4@ : BooBoo
-Children:  @I38@ Bear BornInTheNextCentury 
+Children:  @I38@ Bob MarriedBeforeBirth 
 
 Family ID: @F6@
 Husband: @I5@ : Baby Bear
@@ -145,19 +146,26 @@ Children:  @I33@ Johnson MultipleParents
 Family ID: @F20@
 Husband: @I36@ : John ParentsSet1
 Wife: @I37@ : Mary ParentsSet1
-Children:  @I33@ Johnson MultipleParents
+Children:  @I33@ Johnson MultipleParents 
+
+Family ID: @F21@
+Husband: @I38@ : Bob MarriedBeforeBirth
+Wife: @I39@ : Alice MarriedBeforeBirth
+There are no children in this family.
 
 Issues
 Error: Date of Death is before Date of Birth. @I27@: Poorman DeadBeforeBirth
 Error: Date of marriage is after Date of spouse's death. @F3@
 Anomaly: Wife is male. @F5@
 Anomaly: Married at young age. @F5@
-Anomaly: Child born to older parent. @F5@
 Anomaly: Large number of children. @F6@
 Anomaly: Husband is female. @F7@
+Anomaly: Divorce before marriage. @F8@
 Error: Date of marriage is after Date of spouse's death. @F9@
 Anomaly: Married at young age. @F10@
 Error: Husband and Wife are same person in family. @F15@
 Anomaly: Wife is male. @F15@
 Error: Children born before parents. @F17@
 Error: Children born before parents. @F18@
+Error: Married before birth. @F21@
+Anomaly: Multiple marriages. @I4@, @I3@, @I2@

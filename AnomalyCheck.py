@@ -2,6 +2,7 @@ from datetime import datetime
 from datetime import timedelta
 
 
+
 class Anomalies(object):
     def __init__(self):
         self.messages = dict()
@@ -16,6 +17,7 @@ class Anomalies(object):
         self.messages["divorceBeforeMarriage"] = "Anomaly: Divorce before marriage."
         self.messages["tooManyChildren"] = "Anomaly: Large number of children."
         self.messages["tooOldParent"] = "Anomaly: Child born to older parent."
+        self.messages["marriedMoreThanOnePerson"] = "Anomaly: Multiple marriages."
         
 
     def getMessage(self, messageId):
@@ -110,9 +112,11 @@ def marriedBeforeBirth(fam, individuals):
     
 def marriedTooYoung(fam, individuals):
     MARRYING_AGE = 5113
-    if getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getHusb(), individuals)) < timedelta(days=MARRYING_AGE):
+    if getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getHusb(), individuals)) >= timedelta(0) and \
+        getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getHusb(), individuals))< timedelta(days=MARRYING_AGE):
         return True
-    elif  getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getWife(), individuals)) < timedelta(days=MARRYING_AGE):
+    elif  getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getWife(), individuals)) >= timedelta(0) and \
+        getDate(fam.getMarr()) - getDate(getBirthFromID(fam.getWife(), individuals)) < timedelta(days=MARRYING_AGE):
         return True
     else:
         return False
@@ -130,7 +134,26 @@ def tooOldParent(fam, individuals):
             return True
         else:
             return False
+
+def marriedMoreThanOnePerson(families):
+    married = set()
+    multiple = set()
     
+    for fam in families:
+        if not families[fam].getDiv() and not checkSameHusbWife(families[fam]):
+            if families[fam].getHusb():
+                if families[fam].getHusb() not in married:
+                    married.add(families[fam].getHusb())
+                else:
+                    multiple.add(families[fam].getHusb())
+            if families[fam].getWife():
+                if families[fam].getWife() not in married:
+                    married.add(families[fam].getWife())
+                else:
+                    multiple.add(families[fam].getWife())
+    return multiple
+            
+        
 def checkAnomalies(individuals, families):
     anomalies = []
     for indi in individuals:
@@ -157,4 +180,7 @@ def checkAnomalies(individuals, families):
             anomalies.append(("tooManyChildren", families.get(fam)))
         if tooOldParent(families.get(fam), individuals):
             anomalies.append(("tooOldParent", families.get(fam)))
+    multiple_marriages = marriedMoreThanOnePerson(families)
+    if multiple_marriages:
+        anomalies.append(("marriedMoreThanOnePerson", ', '.join(multiple_marriages)))
     return anomalies

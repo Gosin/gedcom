@@ -39,9 +39,13 @@ def outputAnomalies(anomalies):
         if isinstance(a[1], Family):
             print a[1].getFamID()
 
-        if isinstance(a[1], Individual):
+        elif isinstance(a[1], Individual):
             print a[1].getID() + ": " + a[1].getName()
-
+            
+        else:    
+            print a[1]
+            
+            
 def getNameFromID(individuals,ID):
     for i in individuals:
         if individuals[i].getID() == ID:
