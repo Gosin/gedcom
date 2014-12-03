@@ -18,6 +18,7 @@ class Anomalies(object):
         self.messages["tooManyChildren"] = "Anomaly: Large number of children."
         self.messages["tooOldParent"] = "Anomaly: Child born to older parent."
         self.messages["marriedMoreThanOnePerson"] = "Anomaly: Multiple marriages."
+        self.messages["marriedToSiblings"] = "Anomaly: Husband and wife are siblings."
         
 
     def getMessage(self, messageId):
@@ -64,6 +65,12 @@ def getSexFromID(ID, individuals):
     for indi in individuals:
         if individuals[indi].getSex() and individuals[indi].getID() == ID:
             return individuals[indi].getSex()
+    return None
+
+def getFamcFromID(ID, individuals):
+    for indi in individuals:
+        if individuals[indi].getFamc() and individuals[indi].getID() == ID:
+            return individuals[indi].getFamc()
     return None
 
 
@@ -152,6 +159,14 @@ def marriedMoreThanOnePerson(families):
                 else:
                     multiple.add(families[fam].getWife())
     return multiple
+
+def marriedToSiblings(fam, individuals):
+    if getFamcFromID(fam.getHusb(), individuals) and getFamcFromID(fam.getWife(), individuals):
+        if getFamcFromID(fam.getHusb(), individuals) == getFamcFromID(fam.getWife(), individuals):
+            return True
+    return False
+
+
             
         
 def checkAnomalies(individuals, families):
@@ -180,6 +195,8 @@ def checkAnomalies(individuals, families):
             anomalies.append(("tooManyChildren", families.get(fam)))
         if tooOldParent(families.get(fam), individuals):
             anomalies.append(("tooOldParent", families.get(fam)))
+        if marriedToSiblings(families.get(fam), individuals):
+            anomalies.append(("marriedToSiblings", families.get(fam)))
     multiple_marriages = marriedMoreThanOnePerson(families)
     if multiple_marriages:
         anomalies.append(("marriedMoreThanOnePerson", ', '.join(multiple_marriages)))

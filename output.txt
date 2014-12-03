@@ -1,5 +1,5 @@
-There are 44 individuals in this House.
-Here is the list: 
+There are 48 individuals in this House.
+Here is the list:
 @I1@: Papa Bear
 @I2@: Mama Bear
 @I3@: Yoggi Berra
@@ -39,118 +39,132 @@ Here is the list:
 @I37@: Mary ParentsSet1
 @I38@: Bob MarriedBeforeBirth
 @I39@: Alice MarriedBeforeBirth
+@I40@: Tyrion Stark
+@I41@: Cersi Lanister
 @I42@: Cheer2 Bear
 @I43@: Cheer3 Bear
 @I44@: Cheer4 Bear
 @I45@: Cheer5 Bear
 @I46@: Cheer6 Bear
+@I47@: Alice Stark
+@I48@: Bob Stark
 
-There are 21 families in this House.
-Here is the list:  
+There are 23 families in this House.
+Here is the list:
 
 Family ID: @F1@
 Husband: @I1@ : Papa Bear
 Wife: @I2@ : Mama Bear
-Children:  @I5@ Baby Bear @I6@ Curly Bear 
+Children:  @I5@ Baby Bear @I6@ Curly Bear
 
 Family ID: @F2@
 Husband: @I3@ : Yoggi Berra
 Wife: @I2@ : Mama Bear
-Children:  @I4@ BooBoo 
+Children:  @I4@ BooBoo
 
 Family ID: @F3@
 Husband: @I3@ : Yoggi Berra
 Wife: @I14@ : Cinnamon MarriedToDeadPerson
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F4@
 Husband: @I4@ : BooBoo
 Wife: @I17@ : Sadie TwoSpouses
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F5@
 Husband: @I12@ : Toto Wife Is Male
 Wife: @I4@ : BooBoo
-Children:  @I38@ Bob MarriedBeforeBirth 
+Children:  @I38@ Bob MarriedBeforeBirth
 
 Family ID: @F6@
 Husband: @I5@ : Baby Bear
 Wife: @I7@ : Snuggle Bear
-Children:  @I8@ Love-a-Lot Bear @I9@ Tenderheart Bear @I18@ Cheer1 Bear @I42@ Cheer2 Bear @I43@ Cheer3 Bear @I44@ Cheer4 Bear @I45@ Cheer5 Bear @I46@ Cheer6 Bear 
+Children:  @I8@ Love-a-Lot Bear @I9@ Tenderheart Bear @I18@ Cheer1 Bear @I42@ Cheer2 Bear @I43@ Cheer3 Bear @I44@ Cheer4 Bear @I45@ Cheer5 Bear @I46@ Cheer6 Bear
 
 Family ID: @F7@
 Husband: @I6@ : Curly Bear
 Wife: @I13@ : Lady Husband Is Female
-Children:  @I15@ Black Beauty Bear @I16@ Flame Bear 
+Children:  @I15@ Black Beauty Bear @I16@ Flame Bear
 
 Family ID: @F8@
 Husband: @I11@ : Scooby DivorceBeforeMarriage
 Wife: @I8@ : Love-a-Lot Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F9@
 Husband: @I9@ : Tenderheart Bear
 Wife: @I10@ : Lassie DeathBeforeMarriage
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F10@
 Husband: @I19@ : Marley MarriedTooYoung
 Wife: @I18@ : Cheer1 Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F11@
 Husband: @I20@ : Tramp OneDivorceTooMany
 Wife: @I18@ : Cheer1 Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F12@
 Husband: @I21@ : Spot OneDivorceTooMany
 Wife: @I18@ : Cheer1 Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F13@
 Husband: @I22@ : Benji OneDivorceTooMany
 Wife: @I18@ : Cheer1 Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F14@
 Husband: @I23@ : Bolt DivorcedADeadPerson
 Wife: @I18@ : Cheer1 Bear
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F15@
 Husband: @I24@ : SameHusband SameHusbWife
 Wife: @I24@ : SameHusband SameHusbWife
-There are no children in this family. 
+There are no children in this family.
 
 Family ID: @F16@
 Husband: @I25@ : MarryDaughter ParentsMarryChildren
 Wife: @I26@ : MarryFather ParentsMarryChildren
-Children:  @I26@ MarryFather ParentsMarryChildren 
+Children:  @I26@ MarryFather ParentsMarryChildren
 
 Family ID: @F17@
 Husband: @I28@ : Superman ChildBeforeParents
 Wife: @I29@ : Superwoman ChildBeforeParents
-Children:  @I30@ Superboy ChildBeforeParents 
+Children:  @I30@ Superboy ChildBeforeParents
 
 Family ID: @F18@
 Husband: @I31@ : John SameDadandSon
 Wife: @I32@ : Mary SameDadandSon
-Children:  @I31@ John SameDadandSon 
+Children:  @I31@ John SameDadandSon
 
 Family ID: @F19@
 Husband: @I34@ : John MultipleParents
 Wife: @I35@ : Mary MultipleParents
-Children:  @I33@ Johnson MultipleParents 
+Children:  @I33@ Johnson MultipleParents
 
 Family ID: @F20@
 Husband: @I36@ : John ParentsSet1
 Wife: @I37@ : Mary ParentsSet1
-Children:  @I33@ Johnson MultipleParents 
+Children:  @I33@ Johnson MultipleParents
 
 Family ID: @F21@
 Husband: @I38@ : Bob MarriedBeforeBirth
 Wife: @I39@ : Alice MarriedBeforeBirth
+There are no children in this family.
+
+Family ID: @F22@
+Husband: @I40@ : Tyrion Stark
+Wife: @I41@ : Cersi Lanister
+Children:  @I47@ Alice Stark @I48@ Bob Stark
+
+Family ID: @F23@
+Husband: @I47@ : Alice Stark
+Wife: @I48@ : Bob Stark
 There are no children in this family.
 
 Issues
@@ -168,4 +182,7 @@ Anomaly: Wife is male. @F15@
 Error: Children born before parents. @F17@
 Error: Children born before parents. @F18@
 Error: Married before birth. @F21@
+Anomaly: Wife is male. @F23@
+Anomaly: Husband is female. @F23@
+Anomaly: Husband and wife are siblings. @F23@
 Anomaly: Multiple marriages. @I4@, @I3@, @I2@

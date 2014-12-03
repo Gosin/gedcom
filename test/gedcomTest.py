@@ -14,6 +14,7 @@ from AnomalyCheck import divorceBeforeMarriage
 from AnomalyCheck import tooManyChildren
 from AnomalyCheck import tooOldParent
 from AnomalyCheck import marriedMoreThanOnePerson
+from AnomalyCheck import marriedToSiblings
 
 
 class GedcomTest(unittest.TestCase):
@@ -46,6 +47,25 @@ class GedcomTest(unittest.TestCase):
         self.indi5.addName('Mike Rivas')
         self.indi5.addSex('M')
         self.indi5.addBirt('21 APR 2012')
+        self.indi6 = Individual()
+        self.indi6.addID('@I6@')
+        self.indi6.addName('Mike Rivas')
+        self.indi6.addSex('M')
+        self.indi6.addBirt('21 APR 1988')
+        self.indi6.addFamc('@F8@')
+        self.indi7 = Individual()
+        self.indi7.addID('@I7@')
+        self.indi7.addName('Laura Rivas')
+        self.indi7.addSex('F')
+        self.indi7.addBirt('21 APR 1990')
+        self.indi7.addFamc('@F8@')
+        self.indi8 = Individual()
+        self.indi8.addID('@I8@')
+        self.indi8.addName('Laura Rivas')
+        self.indi8.addSex('F')
+        self.indi8.addBirt('21 APR 1990')
+        self.indi8.addFamc('@F9@')
+
 
         self.individuals = dict()
         self.individuals['1'] = self.indi1
@@ -53,6 +73,9 @@ class GedcomTest(unittest.TestCase):
         self.individuals['3'] = self.indi3
         self.individuals['4'] = self.indi4
         self.individuals['5'] = self.indi5
+        self.individuals['6'] = self.indi6
+        self.individuals['7'] = self.indi7
+        self.individuals['8'] = self.indi8
 
         
         self.fam1 = Family()
@@ -221,6 +244,21 @@ class GedcomTest(unittest.TestCase):
         self.famA.addDiv('12 JUN 2012')
         self.famB.addWife('@W1@')
         self.assertFalse(marriedMoreThanOnePerson(self.families))
+
+    def test_marriedToSiblings(self):
+        self.famA = Family()
+        self.famA.addFamID('@F6@')
+        self.famA.addHusb('@I6@')
+        self.famA.addWife('@I7@')
+        self.famA.addMarr('5 OCT 1999')
+        self.assertTrue(marriedToSiblings(self.famA, self.individuals))
+        self.famB = Family()
+        self.famB.addFamID('@F6@')
+        self.famB.addHusb('@I6@')
+        self.famB.addWife('@I8@')
+        self.famB.addMarr('5 OCT 1999')
+        self.assertFalse(marriedToSiblings(self.famB, self.individuals))
+
 
         
                 
